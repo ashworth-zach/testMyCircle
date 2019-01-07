@@ -125,11 +125,11 @@ namespace myCircle.Controllers
             return Json(success);
         }
         //===========================================================================
-        [HttpPost("/createImage")]
+        [HttpPost("/createTask")]
         public IActionResult creation(images newImage)
         {
             Console.WriteLine("========================================");
-            Console.WriteLine("here");
+            Console.WriteLine(newImage.image);
             Console.WriteLine("========================================");
             Dictionary<string, string> success = new Dictionary<string, string>();
             success.Add("Message", "Success");

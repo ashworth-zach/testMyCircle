@@ -15,6 +15,6 @@ export class HttpService {
     return this._http.post('/loggingIn', user);   
   }
   createTask(newImage){
-    return this._http.post('/createImage', newImage);   
+    return this._http.post('/createTask', newImage);   
   }
 }
