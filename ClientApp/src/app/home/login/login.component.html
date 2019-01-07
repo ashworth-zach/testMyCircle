@@ -1,0 +1,28 @@
+<nav>
+    <img src="assets/images/logo.png">
+    <h1>myCircle</h1>
+</nav>
+<main role="main" class="container">
+        <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
+            <h2>Login</h2>
+        </div>
+  
+        <div class="my-3 p-3 bg-white rounded shadow-sm">
+          <div class="media text-muted pt-3">
+                <form (submit) = "onSubmit2()">
+                    <div class="form-group">
+                        <label for="exampleInputUser1" [ngStyle]="{'margin-top':userMargin}">Email</label>
+                        <input (keyup) = "userKeyed()" type="text" class="form-control" id="exampleInputUser1" aria-describedby="userHelp" name="logUser.email" [(ngModel)]="logUser.email">
+                    </div>
+                    <div id="second" class="form-group">
+                        <label for="exampleInputPassword1" [ngStyle]="{'margin-top':passMargin}">Password</label>
+                        <input (keyup) = "passKeyed()" type="password" class="form-control" id="exampleInputPassword1" aria-describedby="passHelp" name="logUser.password" [(ngModel)]="logUser.password">
+                        <small id="passHelp" class="form-text text-muted"><span class="errors" *ngIf = "error_user">{{error_user}}</span></small>
+                        <small id="passHelp" class="form-text text-muted"><span class="errors" *ngIf = "error_pass">{{error_pass}}</span></small>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+          </div>
+          <p class="bottomLink">Don't have an account <a [routerLink]="['/register']">Sign Up</a></p>
+        </div>
+      </main>

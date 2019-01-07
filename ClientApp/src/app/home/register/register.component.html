@@ -1,0 +1,38 @@
+<nav>
+    <img src="assets/images/logo.png">
+    <h1>myCircle</h1>
+</nav>
+<main role="main" class="container">
+    <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
+        <h2>Sign Up</h2>
+    </div>
+
+    <div class="my-3 p-3 bg-white rounded shadow-sm">
+        <div class="media text-muted pt-3">
+            <form (submit) = "onSubmit()">
+                <div class="form-group">
+                    <label for="exampleInputUser1" [ngStyle]="{'margin-top':userMargin}">Username</label>
+                    <input (keyup) = "userKeyed()" type="text" class="form-control" id="exampleInputUser1" aria-describedby="userHelp" name="newUser.username" [(ngModel)]="newUser.username">
+                    <small id="userHelp" class="form-text text-muted">Username has to be longer than 3 characters. <span class="errors" *ngIf = "error_user">{{error_user}}</span></small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1" [ngStyle]="{'margin-top':emailMargin}">Email address</label>
+                    <input (keyup) = "emailKeyed()" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="newUser.email" [(ngModel)]="newUser.email">
+                    <small id="emailHelp" class="form-text text-muted">Email has to be valid. <span class="errors" *ngIf = "error_email">{{error_email}}</span></small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1" [ngStyle]="{'margin-top':passMargin}">Password</label>
+                    <input (keyup) = "passKeyed()" type="password" class="form-control" id="exampleInputPassword1" aria-describedby="passwordHelp" name="newUser.password" [(ngModel)]="newUser.password">
+                    <small id="passwordHelp" class="form-text text-muted">Password has to be longer than 8 characters. <span class="errors">{{error_pass}}</span></small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword2" [ngStyle]="{'margin-top':pass2Margin}">Confirm Password</label>
+                    <input (keyup) = "pass2Keyed()" type="password" class="form-control" id="exampleInputPassword2" aria-describedby="password2Help" name="newUser.confirm" [(ngModel)]="newUser.confirm">
+                    <small id="password2Help" class="form-text text-muted">Password and confirm password have to match.</small>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </form>
+        </div>
+        <p class="bottomLink">Already have an account <a [routerLink]="['/']">Sign in</a></p>
+    </div>
+</main>

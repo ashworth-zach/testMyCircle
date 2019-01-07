@@ -1,0 +1,73 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+nav{
+    background-color: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+nav h1, img{
+    display: inline-block;
+    color: white;
+}
+nav img{
+    width: 70px;
+    height: 70px;
+}
+nav h1{
+    font-size: 21pt;
+}
+.d-flex.align-items-center{
+    background-color: rgba(79, 120, 170, 1);
+    margin-bottom: 0!important;
+}
+.d-flex.align-items-center h2{
+    display: block;
+    margin: 0 auto;
+    color: whitesmoke;
+}
+div.my-3.p-3.bg-white{
+    box-shadow: 1px 5px 15px rgba(0,0,0,0.5);
+    margin-top: 0!important;
+}
+form{
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+}
+form .form-group small{
+    color: rgba(0,0,0,0.2);
+}
+form input.form-control{
+    border: none;
+    border-bottom: 1px solid rgba(79, 120, 170, 1);
+}
+form input.form-control:focus{
+    box-shadow: none;
+}
+form label{
+    position: absolute;
+    margin-left: 5px;
+    color: rgba(0,0,0,0.7);
+}
+form .btn.btn-primary{
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    background-color: rgba(107, 176, 55, 1);
+    border: none;
+    padding: 10px;
+}
+form .btn.btn-primary:hover{
+    background-color: rgba(107, 176, 55, 0.8);
+}
+p.bottomLink{
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.errors{
+    color: red;
+}

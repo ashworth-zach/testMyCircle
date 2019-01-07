@@ -1,0 +1,118 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Josefin Sans', sans-serif;
+}
+nav{
+    background-color: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+nav h1, img{
+    display: inline-block;
+    color: white;
+}
+nav img{
+    width: 70px;
+    height: 70px;
+}
+nav h1{
+    font-size: 21pt;
+}
+.containment{
+    display: block;
+    width: 100%;
+    height: 900px;
+}
+.main{
+    display: inline-block;
+    width: 25%;
+    height: 100%;
+    background-color: rgba(79, 120, 170, 0.8);
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    border: 1.5px solid rgba(0,0,0,0.8);
+
+}
+.groups{
+    display: inline-block;
+    vertical-align: top;
+    width: 20%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+}
+.channels{
+    display: inline-block;
+    vertical-align: top;
+    width: 80%;
+    height: 100%;
+}
+.channels h3, h4{
+    width: 100%;
+    color: whitesmoke;
+    text-align: center;
+}
+.channels h3 img{
+    display:inline-block; 
+    width:25px; 
+    height:25px; 
+    color: white;
+}
+.add{
+    display: block;
+    width: 80%;
+    padding: 5px;
+    background-color: rgba(107, 176, 55, 1);
+    border-radius: 10px;
+    text-align: center;
+    margin: 0 auto;
+    color: whitesmoke;
+    
+    font-size: 20pt;
+}
+.add:hover{
+    text-decoration: none;
+    border: 1px solid whitesmoke;
+    background-color: rgba(107, 176, 55, 0.8);
+}
+main.contain{
+    display: inline-block;
+    vertical-align: top;
+    width: 75%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+main .scroller{
+    height: 78%;
+    overflow-y: scroll;
+}
+.my-3{
+    margin-top: 0!important;
+    border-radius: 0!important;
+}
+.d-flex.align-items-center{
+    background-color: rgba(79, 120, 170, 0.85);
+}
+.d-flex.align-items-center h2{
+    display: block;
+    margin: 0 auto;
+    color: whitesmoke;
+}
+.d-flex.align-items-center small{
+    color: whitesmoke;
+}
+main form{
+    border: 1px solid rgba(0,0,0,0.8);
+}
+main form input{
+    display: block;
+    height: 50px;
+}
+main form .btn.btn-primary{
+    display: block;
+    width: 100%;
+}
+main form .form-group{
+    margin-bottom: 0!important;
+}
