@@ -35,8 +35,11 @@ namespace myCircle.Models{
         [Compare("password", ErrorMessage = "Password and Confirm do not match")]
         [DataType(DataType.Password)]
         public string confirm {get;set;}
+        [NotMapped]
         public List<UserCircles> Circles{get;set;}
+        [NotMapped]
         public List<Messages> Messages{get;set;}
+        [NotMapped]
         public List<messagelikes> Likes{get;set;}
         
         public DateTime createdAt{get;set;}

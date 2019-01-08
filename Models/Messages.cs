@@ -16,9 +16,12 @@ namespace myCircle.Models{
         public DateTime createdAt{get;set;}
         [Required]
         public int userId{get;set;}
+        [NotMapped]
         public users User{get;set;}
         public int circleId{get;set;}
+        [NotMapped]
         public Circles Circle{get;set;}
+        [NotMapped]
         public List<images> Images{get;set;}
         public Messages(){
             createdAt = DateTime.Now;

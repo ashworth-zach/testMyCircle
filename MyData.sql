@@ -74,8 +74,10 @@ DROP TABLE IF EXISTS `messagelikes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `messagelikes` (
+  `likeId` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
   `messageId` int(11) NOT NULL,
+  PRIMARY KEY (`likeId`),
   KEY `fk_messageLikes_users1_idx` (`userId`),
   KEY `fk_messageLikes_messages1_idx` (`messageId`),
   CONSTRAINT `fk_messageLikes_messages1` FOREIGN KEY (`messageId`) REFERENCES `messages` (`messageid`),
@@ -108,7 +110,7 @@ CREATE TABLE `messages` (
   PRIMARY KEY (`messageId`),
   KEY `fk_messages_users_idx` (`userId`),
   KEY `fk_messages_circles1_idx` (`circleId`),
-  CONSTRAINT `fk_messages_circles1` FOREIGN KEY (`circleId`) REFERENCES `circles` (`circleid`),
+  CONSTRAINT `fk_messages_circles1` FOREIGN KEY (`circleId`) REFERENCES `circles` (`circleId`),
   CONSTRAINT `fk_messages_users` FOREIGN KEY (`userId`) REFERENCES `users` (`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -130,11 +132,13 @@ DROP TABLE IF EXISTS `usercircles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `usercircles` (
+  `usercircleId` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
   `circleId` int(11) NOT NULL,
+  PRIMARY KEY (`usercircleId`),
   KEY `fk_userCirlces_users1_idx` (`userId`),
   KEY `fk_userCirlces_circles1_idx` (`circleId`),
-  CONSTRAINT `fk_userCirlces_circles1` FOREIGN KEY (`circleId`) REFERENCES `circles` (`circleid`),
+  CONSTRAINT `fk_userCirlces_circles1` FOREIGN KEY (`circleId`) REFERENCES `circles` (`circleId`),
   CONSTRAINT `fk_userCirlces_users1` FOREIGN KEY (`userId`) REFERENCES `users` (`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -163,7 +167,7 @@ CREATE TABLE `users` (
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`userId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -172,6 +176,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'billybob','billybob@billybob.com','AQAAAAEAACcQAAAAEJ+90GA1gDytzkf8/pnqFKMY2bFu42CZQGXbjgRlJTF/tGS/cpwF8A6bB21e1d55ig==','2019-01-08 17:54:09','2019-01-08 17:54:09');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -184,4 +189,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-08 16:44:45
+-- Dump completed on 2019-01-08 17:56:24
