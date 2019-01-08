@@ -49,7 +49,7 @@ DROP TABLE IF EXISTS `images`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `images` (
   `imageId` int(11) NOT NULL AUTO_INCREMENT,
-  `path` text,
+  `data` text,
   `messageId` int(11) NOT NULL,
   PRIMARY KEY (`imageId`),
   KEY `fk_images_messages1_idx` (`messageId`),

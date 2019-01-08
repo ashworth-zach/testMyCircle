@@ -11,7 +11,7 @@ namespace myCircle.Models{
         public int imageId{get;set;}
 
         [Required(ErrorMessage = "This field is required")]
-        public string path{get;set;}
+        public string data{get;set;}
         [Required]
         public int messageId{get;set;}
 
