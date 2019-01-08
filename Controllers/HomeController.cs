@@ -43,7 +43,7 @@ namespace myCircle.Controllers
                 return Json(ModelState);
             }
         }
-        [HttpPost("loggingIn")]
+        [HttpPost("/loggingIn")]
         public IActionResult loginUser(Login exUser){
             if(ModelState.IsValid){
                 var userInDb = dbContext.users.FirstOrDefault(u => u.email == exUser.email);
@@ -114,7 +114,7 @@ namespace myCircle.Controllers
                 return Json(ModelState);
             }  
         }
-        [HttpGet("delete/{id}")]
+        [HttpGet("/delete/{id}")]
         public IActionResult deletor(int id){
             users ReturnedValues = dbContext.users.FirstOrDefault(users => users.userId == id);
             dbContext.users.Remove(ReturnedValues);
@@ -125,16 +125,16 @@ namespace myCircle.Controllers
             return Json(success);
         }
         //===========================================================================
-        [HttpPost("/createTask")]
-        public IActionResult creation(images newImage)
-        {
-            Console.WriteLine("========================================");
-            Console.WriteLine(newImage.image);
-            Console.WriteLine("========================================");
-            Dictionary<string, string> success = new Dictionary<string, string>();
-            success.Add("Message", "Success");
-            return Json(success);
-        }
+        // [HttpPost("/createTask")]
+        // public IActionResult creation(images newImage)
+        // {
+        //     Console.WriteLine("========================================");
+        //     Console.WriteLine(newImage.image);
+        //     Console.WriteLine("========================================");
+        //     Dictionary<string, string> success = new Dictionary<string, string>();
+        //     success.Add("Message", "Success");
+        //     return Json(success);
+        // }
     }
 
 }

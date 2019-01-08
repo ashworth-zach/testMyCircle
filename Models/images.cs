@@ -4,16 +4,18 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace myCircle.Models{
+    [Table("images", Schema = "circledb")]
+
     public class images{
         [Key]
         public int imageId{get;set;}
 
         [Required(ErrorMessage = "This field is required")]
-        public string image{get;set;}
+        public string path{get;set;}
+        [Required]
+        public int messageId{get;set;}
 
-        public DateTime createdAt{get;set;}
-        public images(){
-            createdAt = DateTime.Now;
-        }
+        public Messages Message{get;set;}
+
     }
 }
