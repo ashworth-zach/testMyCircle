@@ -1,6 +1,6 @@
--- MySQL dump 10.13  Distrib 8.0.13, for macos10.14 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.12, for Win64 (x86_64)
 --
--- Host: localhost    Database: circleDB
+-- Host: localhost    Database: circledb
 -- ------------------------------------------------------
 -- Server version	8.0.12
 
@@ -41,13 +41,39 @@ LOCK TABLES `circles` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `messageLikes`
+-- Table structure for table `images`
 --
 
-DROP TABLE IF EXISTS `messageLikes`;
+DROP TABLE IF EXISTS `images`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `messageLikes` (
+CREATE TABLE `images` (
+  `imageId` int(11) NOT NULL AUTO_INCREMENT,
+  `data` text,
+  `messageId` int(11) NOT NULL,
+  PRIMARY KEY (`imageId`),
+  KEY `fk_images_messages1_idx` (`messageId`),
+  CONSTRAINT `fk_images_messages1` FOREIGN KEY (`messageId`) REFERENCES `messages` (`messageid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `images`
+--
+
+LOCK TABLES `images` WRITE;
+/*!40000 ALTER TABLE `images` DISABLE KEYS */;
+/*!40000 ALTER TABLE `images` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `messagelikes`
+--
+
+DROP TABLE IF EXISTS `messagelikes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `messagelikes` (
   `userId` int(11) NOT NULL,
   `messageId` int(11) NOT NULL,
   KEY `fk_messageLikes_users1_idx` (`userId`),
@@ -58,12 +84,12 @@ CREATE TABLE `messageLikes` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `messageLikes`
+-- Dumping data for table `messagelikes`
 --
 
-LOCK TABLES `messageLikes` WRITE;
-/*!40000 ALTER TABLE `messageLikes` DISABLE KEYS */;
-/*!40000 ALTER TABLE `messageLikes` ENABLE KEYS */;
+LOCK TABLES `messagelikes` WRITE;
+/*!40000 ALTER TABLE `messagelikes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `messagelikes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -76,7 +102,6 @@ DROP TABLE IF EXISTS `messages`;
 CREATE TABLE `messages` (
   `messageId` int(11) NOT NULL AUTO_INCREMENT,
   `content` varchar(250) DEFAULT NULL,
-  `image` blob,
   `createdAt` datetime DEFAULT NULL,
   `userId` int(11) NOT NULL,
   `circleId` int(11) NOT NULL,
@@ -98,13 +123,13 @@ LOCK TABLES `messages` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `userCirlces`
+-- Table structure for table `usercircles`
 --
 
-DROP TABLE IF EXISTS `userCirlces`;
+DROP TABLE IF EXISTS `usercircles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `userCirlces` (
+CREATE TABLE `usercircles` (
   `userId` int(11) NOT NULL,
   `circleId` int(11) NOT NULL,
   KEY `fk_userCirlces_users1_idx` (`userId`),
@@ -115,12 +140,12 @@ CREATE TABLE `userCirlces` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `userCirlces`
+-- Dumping data for table `usercircles`
 --
 
-LOCK TABLES `userCirlces` WRITE;
-/*!40000 ALTER TABLE `userCirlces` DISABLE KEYS */;
-/*!40000 ALTER TABLE `userCirlces` ENABLE KEYS */;
+LOCK TABLES `usercircles` WRITE;
+/*!40000 ALTER TABLE `usercircles` DISABLE KEYS */;
+/*!40000 ALTER TABLE `usercircles` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -159,4 +184,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-07 14:27:58
+-- Dump completed on 2019-01-08 16:44:45
