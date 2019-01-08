@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace myCircle.Models{
+    [Table("users", Schema = "circledb")]
+
     public class users{
         [Key]
         public int userId{get;set;}
@@ -33,6 +35,9 @@ namespace myCircle.Models{
         [Compare("password", ErrorMessage = "Password and Confirm do not match")]
         [DataType(DataType.Password)]
         public string confirm {get;set;}
+        public List<UserCircles> Circles{get;set;}
+        public List<Messages> Messages{get;set;}
+        public List<messagelikes> Likes{get;set;}
         
         public DateTime createdAt{get;set;}
         public DateTime updatedAt{get;set;}
