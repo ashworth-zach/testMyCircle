@@ -12,15 +12,10 @@ namespace myCircle.Models{
 
         [Required(ErrorMessage = "This field is required")]
         public string title{get;set;}
-<<<<<<< HEAD
-        public List<users> Users{get;set;}
-        public List<messages> messages{get;set;}
-=======
         [NotMapped]
         public List<users> Users{get;set;}
         [NotMapped]
-        public List<Messages> Messages{get;set;}
->>>>>>> d908e83a3164ee070a4f31282bcb9916f05e0cca
+        public List<messages> Messages{get;set;}
         public DateTime createdAt{get;set;}
         public DateTime updatedAt{get;set;}
 
