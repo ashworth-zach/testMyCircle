@@ -18,9 +18,10 @@ namespace myCircle.Models{
         public int userId{get;set;}
         [NotMapped]
         public users User{get;set;}
-        public int circleId{get;set;}
+        [Required]
+        public int channelId{get;set;}
         [NotMapped]
-        public circles Circle{get;set;}
+        public channels Channel{get;set;}
         [NotMapped]
         public List<images> Images{get;set;}
         public messages(){
