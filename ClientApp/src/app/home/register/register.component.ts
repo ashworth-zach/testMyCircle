@@ -43,12 +43,20 @@ export class registerComponent implements OnInit {
   }
 //=====================================================
   onSubmit(){
+    this.error_user = null;
+    this.error_email = null;
+    this.error_pass = null;
+    this.error_confirm = null;
     let observable = this._httpService.CreateUser(this.newUser);
     observable.subscribe(data => {
-      console.log(data);
       if(data['Message'] != "Success"){
         if(data['username']){
+          if(data['Message'] === "Error"){
+            this.error_user = [{"errorMessage": data['username']}];
+          }
+          else{
           this.error_user = data['username']['errors'];
+          }
         }
         if(data['email']){
           if(data['Message'] === "Error"){
@@ -59,7 +67,7 @@ export class registerComponent implements OnInit {
           }
         }
         if(data['password']){
-          this.passMargin = data['password']['errors'];
+          this.error_pass = data['password']['errors'];
         }
         if(data['confirm']){
           this.error_confirm = data['confirm']['errors'];

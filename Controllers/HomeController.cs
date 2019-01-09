@@ -22,9 +22,6 @@ namespace myCircle.Controllers
         [HttpPost("/registeration")]
         public JsonResult registeration([FromBody] users newUser)
         {
-            Console.WriteLine("==========================================");
-            Console.WriteLine("here");
-            Console.WriteLine("==========================================");
             if(ModelState.IsValid){
                 if(dbContext.users.Any(u => u.email == newUser.email)){
                     Dictionary<string, string> error = new Dictionary<string, string>();
@@ -32,7 +29,12 @@ namespace myCircle.Controllers
                     error.Add("email", "Email is already in use");
                     return Json(error);
                 }
-
+                if(dbContext.users.Any(u => u.username == newUser.username)){
+                    Dictionary<string, string> error = new Dictionary<string, string>();
+                    error.Add("Message", "Error");
+                    error.Add("username", "Username is already in use");
+                    return Json(error);
+                }
                 PasswordHasher<users> Hasher = new PasswordHasher<users>();
                 newUser.password = Hasher.HashPassword(newUser, newUser.password);
 

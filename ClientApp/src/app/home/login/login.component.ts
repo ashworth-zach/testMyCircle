@@ -11,8 +11,8 @@ export class loginComponent implements OnInit {
   userMargin:any;
   passMargin:any;
   logUser:any;
-  error_user:String;
-  error_pass:String;
+  error_user:any;
+  error_pass:any;
   constructor(private _httpService: HttpService, private route: ActivatedRoute, private routing: Router) { }
 
   ngOnInit() {
@@ -30,16 +30,20 @@ export class loginComponent implements OnInit {
   onSubmit2(){
     let observable = this._httpService.LogginUser(this.logUser);
     observable.subscribe(data => {
-      if(data['Message'] == "FirstError"){
-        for(let x=0; x<data['data'].length; x++){
-          if(data['data'][x].username){
-            this.error_user = data['data'][x].username;
+      console.log(data);
+      if(data['Message'] != "Success"){
+        if(data['email']){
+          if(data['Message'] === "Error"){
+            this.error_user = [{"errorMessage": data['email']}];
           }
-          if(data['data'][x].password){
-            this.error_pass = data['data'][x].password;
+          else{
+          this.error_user = data['email']['errors'];
           }
         }
-    }else{
+        if(data['password']){
+          this.error_pass = data['password']['errors'];
+        }
+      }else{
       this.logUser = {email: "", password: ""};
       this.routing.navigate(['/homepage']);
     }

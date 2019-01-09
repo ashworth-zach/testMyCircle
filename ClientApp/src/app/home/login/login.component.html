@@ -12,13 +12,13 @@
                 <form (submit) = "onSubmit2()">
                     <div class="form-group">
                         <label for="exampleInputUser1" [ngStyle]="{'margin-top':userMargin}">Email</label>
-                        <input (keyup) = "userKeyed()" type="text" class="form-control" id="exampleInputUser1" aria-describedby="userHelp" name="logUser.email" [(ngModel)]="logUser.email">
+                        <input (keyup) = "userKeyed()" type="email" class="form-control" id="exampleInputUser1" aria-describedby="userHelp" name="logUser.email" [(ngModel)]="logUser.email">
                     </div>
                     <div id="second" class="form-group">
                         <label for="exampleInputPassword1" [ngStyle]="{'margin-top':passMargin}">Password</label>
                         <input (keyup) = "passKeyed()" type="password" class="form-control" id="exampleInputPassword1" aria-describedby="passHelp" name="logUser.password" [(ngModel)]="logUser.password">
-                        <small id="passHelp" class="form-text text-muted"><span class="errors" *ngIf = "error_user">{{error_user}}</span></small>
-                        <small id="passHelp" class="form-text text-muted"><span class="errors" *ngIf = "error_pass">{{error_pass}}</span></small>
+                        <small id="passHelp" class="form-text text-muted"><span class="errors" *ngIf = "error_user"><span *ngFor = "let userE of error_user">{{userE.errorMessage}} </span></span></small>
+                        <small id="passHelp" class="form-text text-muted"><span class="errors" *ngIf = "error_pass"><span *ngFor = "let passE of error_pass">{{passE.errorMessage}} </span></span></small>
                     </div>
                     <button type="submit" class="btn btn-primary">Login</button>
                 </form>
