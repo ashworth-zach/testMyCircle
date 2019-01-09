@@ -22,6 +22,7 @@ namespace myCircle.Controllers
         [HttpPost("/registeration")]
         public JsonResult registeration([FromBody] users newUser)
         {
+            Console.WriteLine(newUser.username+newUser.email+newUser.password);
             if(ModelState.IsValid){
                 if(dbContext.users.Any(u => u.email == newUser.email)){
                     Dictionary<string, string> error = new Dictionary<string, string>();
