@@ -11,19 +11,6 @@ export class mainComponent implements OnInit {
 
   constructor(private _httpService: HttpService, private route: ActivatedRoute, private routing: Router) { }
   user:any;
-  newImage:any;
-  errorImage:any;
   ngOnInit() {
-    this.newImage = {image: ""};
-  }
-
-  onSubmit(){
-    this.errorImage = null;
-
-    let observable = this._httpService.createTask(this.newImage);
-    observable.subscribe(data => {
-      console.log(data);
-      this.newImage = {image: ""};
-    })
   }
 }

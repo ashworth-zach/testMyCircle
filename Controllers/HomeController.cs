@@ -30,7 +30,12 @@ namespace myCircle.Controllers
                     error.Add("email", "Email is already in use");
                     return Json(error);
                 }
-
+                if(dbContext.users.Any(u => u.username == newUser.username)){
+                    Dictionary<string, string> error = new Dictionary<string, string>();
+                    error.Add("Message", "Error");
+                    error.Add("username", "Username is already in use");
+                    return Json(error);
+                }
                 PasswordHasher<users> Hasher = new PasswordHasher<users>();
                 newUser.password = Hasher.HashPassword(newUser, newUser.password);
 
@@ -125,17 +130,7 @@ namespace myCircle.Controllers
             success.Add("Message", "Success");
             return Json(success);
         }
-        //===========================================================================
-        // [HttpPost("/createTask")]
-        // public IActionResult creation(images newImage)
-        // {
-        //     Console.WriteLine("========================================");
-        //     Console.WriteLine(newImage.image);
-        //     Console.WriteLine("========================================");
-        //     Dictionary<string, string> success = new Dictionary<string, string>();
-        //     success.Add("Message", "Success");
-        //     return Json(success);
-        // }
+        //==========================================================================
     }
 
 }

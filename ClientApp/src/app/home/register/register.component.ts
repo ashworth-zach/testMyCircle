@@ -15,9 +15,10 @@ export class registerComponent implements OnInit {
   emailMargin:any;
   pass2Margin:any;
   newUser:any;
-  error_user:String;
-  error_email:String;
-  error_pass:String;
+  error_user:any;
+  error_email:any;
+  error_pass:any;
+  error_confirm:any;
 
   ngOnInit() {
     this.userMargin = "10px"
@@ -42,32 +43,34 @@ export class registerComponent implements OnInit {
   }
 //=====================================================
   onSubmit(){
+    this.error_user = null;
+    this.error_email = null;
+    this.error_pass = null;
+    this.error_confirm = null;
     let observable = this._httpService.CreateUser(this.newUser);
     observable.subscribe(data => {
       if(data['Message'] != "Success"){
-        if(data['Message'] == "FirstError"){
-          for(let x=0; x<data['data'].length; x++){
-            if(data['data'][x].username){
-              this.error_user = data['data'][x].username;
-            }
-            if(data['data'][x].email){
-              this.error_email = data['data'][x].email;
-            }
-            if(data['data'][x].password){
-              this.error_pass = data['data'][x].password;
-            }
+        if(data['username']){
+          if(data['Message'] === "Error"){
+            this.error_user = [{"errorMessage": data['username']}];
+          }
+          else{
+          this.error_user = data['username']['errors'];
           }
         }
-        if(data['Message'] == "Error"){
-          if(data['data']['errors']['username']){
-            this.error_user = data['data']['errors']['username']['message'];
+        if(data['email']){
+          if(data['Message'] === "Error"){
+            this.error_email = [{"errorMessage": data['email']}];
           }
-          if(data['data']['errors']['email']){
-            this.error_email = data['data']['errors']['email']['message'];
+          else{
+          this.error_email = data['email']['errors'];
           }
-          if(data['data']['errors']['password']){
-            this.error_pass = data['data']['errors']['password']['message'];
-          }
+        }
+        if(data['password']){
+          this.error_pass = data['password']['errors'];
+        }
+        if(data['confirm']){
+          this.error_confirm = data['confirm']['errors'];
         }
       }else{
         this.newUser = {username: "", email: "", password: "", confirm: ""};

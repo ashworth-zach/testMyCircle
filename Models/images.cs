@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace myCircle.Models{
-    [Table("images", Schema = "circledb")]
+    [Table("images", Schema = "circlesDB")]
 
     public class images{
         [Key]
@@ -16,7 +16,7 @@ namespace myCircle.Models{
         public int messageId{get;set;}
         [NotMapped]
 
-        public Messages Message{get;set;}
+        public messages message{get;set;}
 
     }
 }
