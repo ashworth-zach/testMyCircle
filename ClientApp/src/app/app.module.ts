@@ -8,10 +8,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { loginComponent } from './home/login/login.component';
 import { registerComponent } from './home/register/register.component';
 import { mainComponent } from './main/main.component';
+import { CreateChannelComponent } from './create-channel/create-channel.component';
+import { JoinChannelComponent } from './join-channel/join-channel.component';
 
 
 @NgModule({
-  declarations: [AppComponent, loginComponent, registerComponent, mainComponent],
+  declarations: [AppComponent, loginComponent, registerComponent, mainComponent, CreateChannelComponent, JoinChannelComponent],
   imports: [BrowserModule, AppRoutingModule,HttpClientModule,
     FormsModule],
   providers: [HttpService],

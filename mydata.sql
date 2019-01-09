@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.12, for Win64 (x86_64)
 --
--- Host: localhost    Database: circledb
+-- Host: localhost    Database: circlesdb
 -- ------------------------------------------------------
 -- Server version	8.0.12
 
@@ -14,6 +14,33 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `channels`
+--
+
+DROP TABLE IF EXISTS `channels`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `channels` (
+  `channelId` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `circleId` int(11) NOT NULL,
+  PRIMARY KEY (`channelId`),
+  KEY `fk_channels_circles1_idx` (`circleId`),
+  CONSTRAINT `fk_channels_circles1` FOREIGN KEY (`circleId`) REFERENCES `circles` (`circleid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `channels`
+--
+
+LOCK TABLES `channels` WRITE;
+/*!40000 ALTER TABLE `channels` DISABLE KEYS */;
+/*!40000 ALTER TABLE `channels` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `circles`
@@ -110,7 +137,7 @@ CREATE TABLE `messages` (
   PRIMARY KEY (`messageId`),
   KEY `fk_messages_users_idx` (`userId`),
   KEY `fk_messages_circles1_idx` (`circleId`),
-  CONSTRAINT `fk_messages_circles1` FOREIGN KEY (`circleId`) REFERENCES `circles` (`circleId`),
+  CONSTRAINT `fk_messages_circles1` FOREIGN KEY (`circleId`) REFERENCES `circles` (`circleid`),
   CONSTRAINT `fk_messages_users` FOREIGN KEY (`userId`) REFERENCES `users` (`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -138,7 +165,7 @@ CREATE TABLE `usercircles` (
   PRIMARY KEY (`usercircleId`),
   KEY `fk_userCirlces_users1_idx` (`userId`),
   KEY `fk_userCirlces_circles1_idx` (`circleId`),
-  CONSTRAINT `fk_userCirlces_circles1` FOREIGN KEY (`circleId`) REFERENCES `circles` (`circleId`),
+  CONSTRAINT `fk_userCirlces_circles1` FOREIGN KEY (`circleId`) REFERENCES `circles` (`circleid`),
   CONSTRAINT `fk_userCirlces_users1` FOREIGN KEY (`userId`) REFERENCES `users` (`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -167,7 +194,7 @@ CREATE TABLE `users` (
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`userId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -176,7 +203,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'billybob','billybob@billybob.com','AQAAAAEAACcQAAAAEJ+90GA1gDytzkf8/pnqFKMY2bFu42CZQGXbjgRlJTF/tGS/cpwF8A6bB21e1d55ig==','2019-01-08 17:54:09','2019-01-08 17:54:09');
+INSERT INTO `users` VALUES (2,'zachzach','zachzach@zach.zach','AQAAAAEAACcQAAAAEB+iqpIy17qyrxeXt2atta6UOv71yGCneuF8gYSC6eb8VqcorsCk/f+VEbVV383MrQ==','2019-01-09 16:15:32','2019-01-09 16:15:32');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -189,4 +216,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-08 18:01:48
+-- Dump completed on 2019-01-09 16:51:02

@@ -4,26 +4,24 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace myCircle.Models{
-    [Table("circles", Schema = "circlesDB")]
+    [Table("channels", Schema = "circlesDB")]
 
-    public class circles{
+    public class channels{
         [Key]
-        public int circleId{get;set;}
+        public int channelId{get;set;}
 
         [Required(ErrorMessage = "This field is required")]
-        public string title{get;set;}
+        public string name{get;set;}
+        public int circleId{get;set;}
         [NotMapped]
-        public List<users> Users{get;set;}
+        public circles Circle{get;set;}
         [NotMapped]
         public List<messages> Messages{get;set;}
         public DateTime createdAt{get;set;}
-        public DateTime updatedAt{get;set;}
 
         
         public circles(){
             createdAt = DateTime.Now;
-            updatedAt = DateTime.Now;
-
         }
     }
 }

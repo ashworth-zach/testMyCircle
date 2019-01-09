@@ -17,4 +17,7 @@ export class HttpService {
   createTask(newImage){
     return this._http.post('/createTask', newImage);   
   }
+  getChannel(channel){
+    return this._http.post('/getChannel', channel)
+  }
 }
