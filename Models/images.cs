@@ -14,6 +14,7 @@ namespace myCircle.Models{
         public string data{get;set;}
         [Required]
         public int messageId{get;set;}
+        [NotMapped]
 
         public Messages Message{get;set;}
 
