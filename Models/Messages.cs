@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace myCircle.Models{
-    [Table("messages", Schema = "circledb")]
+    [Table("messages", Schema = "circlesDB")]
 
-    public class Messages{
+    public class messages{
         [Key]
         public int messageId{get;set;}
 
@@ -16,11 +16,11 @@ namespace myCircle.Models{
         public DateTime createdAt{get;set;}
         [Required]
         public int userId{get;set;}
-        public users User{get;set;}
+        public users user{get;set;}
         public int circleId{get;set;}
-        public Circles Circle{get;set;}
-        public List<images> Images{get;set;}
-        public Messages(){
+        public circles circle{get;set;}
+        public List<images> images{get;set;}
+        public messages(){
             createdAt = DateTime.Now;
         }
     }

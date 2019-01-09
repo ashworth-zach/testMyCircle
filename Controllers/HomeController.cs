@@ -22,6 +22,9 @@ namespace myCircle.Controllers
         [HttpPost("/registeration")]
         public JsonResult registeration([FromBody] users newUser)
         {
+            Console.WriteLine("==========================================");
+            Console.WriteLine("here");
+            Console.WriteLine("==========================================");
             if(ModelState.IsValid){
                 if(dbContext.users.Any(u => u.email == newUser.email)){
                     Dictionary<string, string> error = new Dictionary<string, string>();
@@ -124,17 +127,7 @@ namespace myCircle.Controllers
             success.Add("Message", "Success");
             return Json(success);
         }
-        //===========================================================================
-        // [HttpPost("/createTask")]
-        // public IActionResult creation(images newImage)
-        // {
-        //     Console.WriteLine("========================================");
-        //     Console.WriteLine(newImage.image);
-        //     Console.WriteLine("========================================");
-        //     Dictionary<string, string> success = new Dictionary<string, string>();
-        //     success.Add("Message", "Success");
-        //     return Json(success);
-        // }
+        //==========================================================================
     }
 
 }
