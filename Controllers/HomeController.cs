@@ -130,6 +130,18 @@ namespace myCircle.Controllers
             success.Add("Message", "Success");
             return Json(success);
         }
+        [HttpGet("/getchannel/{id}")]
+        public IActionResult GetChannel(int id){
+            channels retrievedChannel = dbContext.channels.FirstOrDefault(x=>x.channelId==id);
+            if(retrievedChannel.channelId==id){
+                return Json(retrievedChannel);
+            }
+            else{
+                Dictionary<string, string> error = new Dictionary<string, string>();
+                error.Add("Message", "Error");
+                return Json(error);
+            }
+        }
         //==========================================================================
     }
 
