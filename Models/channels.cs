@@ -20,7 +20,7 @@ namespace myCircle.Models{
         public DateTime createdAt{get;set;}
 
         
-        public circles(){
+        public channels(){
             createdAt = DateTime.Now;
         }
     }

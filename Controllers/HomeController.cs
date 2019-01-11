@@ -130,17 +130,16 @@ namespace myCircle.Controllers
             success.Add("Message", "Success");
             return Json(success);
         }
-        [HttpPost("/getchannel")]
-        public IActionResult GetChannel(Dictionary<string,string> channel){
-            if(!channel.id){
-                return Json({"message":"Error","error":"Invalid post format"});
-            }
-            channels retrievedChannel = dbContext.channels.FirstOrDefault(x=>x.channelId==channel.id);
-            if(retrievedChannel){
+        [HttpGet("/getchannel/{id}")]
+        public IActionResult GetChannel(int id){
+            channels retrievedChannel = dbContext.channels.FirstOrDefault(x=>x.channelId==id);
+            if(retrievedChannel.channelId==id){
                 return Json(retrievedChannel);
             }
             else{
-                return Json({"message":"Error","error":"channel not found"});
+                Dictionary<string, string> error = new Dictionary<string, string>();
+                error.Add("Message", "Error");
+                return Json(error);
             }
         }
         //==========================================================================

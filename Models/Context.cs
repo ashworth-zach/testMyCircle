@@ -11,6 +11,7 @@ namespace myCircle.Models
         public DbSet<messagelikes> messagelikes { get; set; }
         public DbSet<messages> messages { get; set; }
         public DbSet<images> images { get; set; }
+        public DbSet<channels> channels{get;set;}
 
     }
 }
