@@ -130,6 +130,19 @@ namespace myCircle.Controllers
             success.Add("Message", "Success");
             return Json(success);
         }
+        [HttpPost("/getchannel")]
+        public IActionResult GetChannel(Dictionary<string,string> channel){
+            if(!channel.id){
+                return Json({"message":"Error","error":"Invalid post format"});
+            }
+            channels retrievedChannel = dbContext.channels.FirstOrDefault(x=>x.channelId==channel.id);
+            if(retrievedChannel){
+                return Json(retrievedChannel);
+            }
+            else{
+                return Json({"message":"Error","error":"channel not found"});
+            }
+        }
         //==========================================================================
     }
 
