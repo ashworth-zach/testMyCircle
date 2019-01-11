@@ -8,8 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { loginComponent } from './home/login/login.component';
 import { registerComponent } from './home/register/register.component';
 import { mainComponent } from './main/main.component';
-import { CreateChannelComponent } from './create-channel/create-channel.component';
-import { JoinChannelComponent } from './join-channel/join-channel.component';
+import { CreateChannelComponent } from './channel/create-channel/create-channel.component';
+import { JoinChannelComponent } from './channel/join-channel/join-channel.component';
 
 
 @NgModule({
