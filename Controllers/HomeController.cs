@@ -219,7 +219,7 @@ namespace myCircle.Controllers
             circles retrievedCircle = dbContext.circles.FirstOrDefault(circles => circles.circleId == Circle.circleId);
             if (ModelState.IsValid)
             {
-                if (dbContext.circles.Any(x=>x.title==Circle.title))
+                if (dbContext.circles.Any(x => x.title == Circle.title))
                 {
                     Dictionary<string, string> error = new Dictionary<string, string>();
                     error.Add("Message", "Error");
@@ -251,12 +251,16 @@ namespace myCircle.Controllers
             //chack for images somehow
             //if image save them in the images table
             //validate and save the message
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 dbContext.messages.Add(Message);
                 dbContext.SaveChanges();
+                Dictionary<string, string> success = new Dictionary<string, string>();
+                success.Add("Message", "Success");
+                return Json(success);
             }
-            else{
+            else
+            {
                 return Json(ModelState);
             }
         }
