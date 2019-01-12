@@ -44,6 +44,8 @@ namespace myCircle.Controllers
                 newUser.password = Hasher.HashPassword(newUser, newUser.password);
 
                 dbContext.users.Add(newUser);
+                HttpContext.Session.SetInt32("UserId", newUser.userId);
+
                 dbContext.SaveChanges();
                 Dictionary<string, string> success = new Dictionary<string, string>();
                 success.Add("Message", "Success");
@@ -92,13 +94,13 @@ namespace myCircle.Controllers
         //==========================================================================================================
         //USER SETTINGS AND STUFF
         //==========================================================================================================
-        [HttpGet("/editor/{id}")]
-        public IActionResult userEditting(int id)
+        [HttpGet("/getUser/{id}")]//USE THIS TO RETRIEVE USER TO EDIT
+        public IActionResult GetUser(int id)
         {
             if (dbContext.users.Any(usr => usr.userId == id))
             {
-                users editThis = dbContext.users.FirstOrDefault(usr => usr.userId == id);
-                return Json(editThis);
+                users User = dbContext.users.FirstOrDefault(usr => usr.userId == id);
+                return Json(User);
             }
             else
             {
@@ -109,7 +111,7 @@ namespace myCircle.Controllers
             }
         }
 
-        [HttpPost("/update")]
+        [HttpPost("/update")]//USE THIS TO UPDATE USER
         public IActionResult editUser([FromBody] users updateUser)
         {
             users RetrievedUser = dbContext.users.FirstOrDefault(users => users.userId == updateUser.userId);
@@ -263,6 +265,35 @@ namespace myCircle.Controllers
             {
                 return Json(ModelState);
             }
+        }
+        [HttpGet("/Like/{messageId}")]
+        public IActionResult LikeMessage(int messageId){
+             if (HttpContext.Session.GetInt32("UserId") == null)
+            {
+                Dictionary<string, string> error = new Dictionary<string, string>();
+                    error.Add("Message", "Error");
+                    error.Add("error", "not logged in");
+                    return Json(error);
+            }
+            int User = HttpContext.Session.GetInt32("UserId") ?? default(int);
+            if (dbContext.messagelikes.Any(guest => guest.userId == User && guest.messageId == messageId))
+            {
+                Dictionary<string, string> error = new Dictionary<string, string>();
+                    error.Add("Message", "Error");
+                    error.Add("error", "Already Liked this message");
+                    return Json(error);
+
+            }
+            users usertoAdd = dbContext.users.FirstOrDefault(x => x.userId == User);
+            messages messagetoAdd = dbContext.messages.FirstOrDefault(x => x.messageId == messageId);
+            messagelikes newlike = new messagelikes
+            {
+                userId = User,
+                messageId = messageId,
+            };
+            dbContext.messagelikes.Add(newlike);
+            dbContext.SaveChanges();
+            return RedirectToAction("Weddings");
         }
         //==========================================================================================================
 
