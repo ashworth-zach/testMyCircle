@@ -15,10 +15,13 @@ export class CreateChannelComponent implements OnInit {
   ngOnInit() {
   }
   checkChannelOnKeyup(event: any){
+    if (event.target.value.length==0){
+      return;
+    }
     var x = event.target.value;
     let observable = this._httpService.getChannel(x);
     observable.subscribe(data => {
-      if(data['message']=="error"){
+      if(data['Message']=="Error"){
         this.ChannelExists=false;
       }
       else{
