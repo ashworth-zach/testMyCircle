@@ -9,13 +9,9 @@ namespace myCircle.Models
     {
         [Key]
         public int likeId{get;set;}
-        [Required]
         public int userId{get;set;}
-        [NotMapped]
         public users User{get;set;}
-        [Required]
         public int messageId{get;set;}
-        [NotMapped]
         public messages Messages{get;set;}
     }
 }

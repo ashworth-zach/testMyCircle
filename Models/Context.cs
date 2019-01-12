@@ -8,6 +8,7 @@ namespace myCircle.Models
         public Context(DbContextOptions<Context> options) : base(options) { }
         public DbSet<users> users { get; set; }
         public DbSet<circles> circles { get; set; }
+        public DbSet<UserCircles> userCircles{get;set;}
         public DbSet<messagelikes> messagelikes { get; set; }
         public DbSet<messages> messages { get; set; }
         public DbSet<images> images { get; set; }

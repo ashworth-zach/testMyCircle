@@ -10,36 +10,33 @@ namespace myCircle.Models{
         [Key]
         public int userId{get;set;}
 
-        [Required(ErrorMessage = "This field is required")]
-        [Display(Name = "Username:")]
-        [MinLength(2, ErrorMessage = "Username must be atleast 2 characters")]
-        [MaxLength(100, ErrorMessage = "Username must be less than 100 characters")]
+        // [Required(ErrorMessage = "This field is required")]
+        // [Display(Name = "Username:")]
+        // [MinLength(2, ErrorMessage = "Username must be atleast 2 characters")]
+        // [MaxLength(100, ErrorMessage = "Username must be less than 100 characters")]
         public string username{get;set;}
 
-        [Required(ErrorMessage = "This field is required")]
-        [Display(Name = "Email:")]
-        [EmailAddress(ErrorMessage = "Invalid email")]
-        [MaxLength(100, ErrorMessage = "Email Name must be atleast 2 characters")]
+        // [Required(ErrorMessage = "This field is required")]
+        // [Display(Name = "Email:")]
+        // [EmailAddress(ErrorMessage = "Invalid email")]
+        // [MaxLength(100, ErrorMessage = "Email Name must be atleast 2 characters")]
         public string email{get;set;}
 
-        [Required(ErrorMessage = "This field is required")]
-        [Display(Name = "Password:")]
-        [DataType(DataType.Password)]
-        [MinLength(8, ErrorMessage = "Password must be longer than 8 characters")]
-        [MaxLength(255, ErrorMessage = "Password must be less than 255 characters")]
+        // [Required(ErrorMessage = "This field is required")]
+        // [Display(Name = "Password:")]
+        // [DataType(DataType.Password)]
+        // [MinLength(8, ErrorMessage = "Password must be longer than 8 characters")]
+        // [MaxLength(255, ErrorMessage = "Password must be less than 255 characters")]
         public string password{get;set;}
 
 
-        [NotMapped]
-        [Display(Name = "Confirm Password:")]
-        [Compare("password", ErrorMessage = "Password and Confirm do not match")]
-        [DataType(DataType.Password)]
-        public string confirm {get;set;}
-        [NotMapped]
+        // [NotMapped]
+        // [Display(Name = "Confirm Password:")]
+        // [Compare("password", ErrorMessage = "Password and Confirm do not match")]
+        // [DataType(DataType.Password)]
+        // public string confirm {get;set;}
         public List<UserCircles> Circles{get;set;}
-        [NotMapped]
         public List<messages> Messages{get;set;}
-        [NotMapped]
         public List<messagelikes> Likes{get;set;}
         
         public DateTime createdAt{get;set;}
@@ -47,6 +44,10 @@ namespace myCircle.Models{
         public users(){
             createdAt = DateTime.Now;
             updatedAt = DateTime.Now;
+            Messages = new List<messages>();
+            Circles = new List<UserCircles>();
+            Likes = new List<messagelikes>();
+
         }
     }
 }

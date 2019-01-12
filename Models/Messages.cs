@@ -14,18 +14,17 @@ namespace myCircle.Models{
         public string content{get;set;}
 
         public DateTime createdAt{get;set;}
-        [Required]
         public int userId{get;set;}
-        [NotMapped]
         public users User{get;set;}
-        [Required]
         public int channelId{get;set;}
-        [NotMapped]
         public channels Channel{get;set;}
-        [NotMapped]
         public List<images> Images{get;set;}
+        public List<messagelikes> likes{get;set;}
         public messages(){
             createdAt = DateTime.Now;
+            Images = new List<images>();
+            likes = new List<messagelikes>();
+
         }
     }
 }

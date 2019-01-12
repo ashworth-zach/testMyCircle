@@ -22,7 +22,7 @@ namespace myCircle.Controllers
         }
         //==========================================================================================================
         [HttpPost("/registeration")]
-        public JsonResult registeration([FromBody] users newUser)
+        public JsonResult registeration([FromBody] register newUser)
         {
             if (ModelState.IsValid)
             {
@@ -40,13 +40,18 @@ namespace myCircle.Controllers
                     error.Add("username", "Username is already in use");
                     return Json(error);
                 }
-                PasswordHasher<users> Hasher = new PasswordHasher<users>();
+                PasswordHasher<register> Hasher = new PasswordHasher<register>();
                 newUser.password = Hasher.HashPassword(newUser, newUser.password);
-
-                dbContext.users.Add(newUser);
-                HttpContext.Session.SetInt32("UserId", newUser.userId);
-
+                users usertoAdd= new users{
+                   username=newUser.username,
+                   password=newUser.password,
+                   email=newUser.email,
+                };
+                dbContext.users.Add(usertoAdd);
                 dbContext.SaveChanges();
+                users User= dbContext.users.FirstOrDefault(x=>x.email==newUser.email);
+                HttpContext.Session.SetInt32("UserId", User.userId);
+
                 Dictionary<string, string> success = new Dictionary<string, string>();
                 success.Add("Message", "Success");
                 return Json(success);
@@ -176,7 +181,20 @@ namespace myCircle.Controllers
         //==========================================================================================================
         //CIRCLE FUNCTIONS
         //==========================================================================================================
-        [HttpGet("/getcircle/{id}")]
+        [HttpGet("/GetCircleData/{id}")]//USE THIS TO RETRIEVE ALL CHANNELS AND MESSAGES IN A SPECIFIC CIRCLE
+        public IActionResult GetCircleData(int id)
+        {
+            ViewBag.data = dbContext.circles.Where(x=>x.circleId==id).Include(y=>y.channels).ThenInclude(z=>z.Messages).ThenInclude(m=>m.likes);
+            if (ViewBag.data.circleId==id){
+                return Json(ViewBag.data);//I USED VIEWBAG BECAUSE IM TOO LAZY TO FIGURE OUT WHAT OBJECT THIS IS ^^^^^^^^^^^^^^
+            }
+            else{
+                Dictionary<string, string> error = new Dictionary<string, string>();
+                error.Add("Message", "Error");
+                return Json(error);
+            }
+        }
+        [HttpGet("/getcircle/{id}")]//USE THIS TO VERIFY IF A CIRCLE EXISTS OR NOT
         public IActionResult GetCircle(int id)
         {
             circles retrievedCircle = dbContext.circles.FirstOrDefault(x => x.circleId == id);

@@ -12,16 +12,15 @@ namespace myCircle.Models{
 
         [Required(ErrorMessage = "This field is required")]
         public string name{get;set;}
-        public int circleId{get;set;}
-        [NotMapped]
-        public circles Circle{get;set;}
-        [NotMapped]
-        public List<messages> Messages{get;set;}
         public DateTime createdAt{get;set;}
+        public int circleId{get;set;}
+        public circles Circle{get;set;}
+        public List<messages> Messages{get;set;}
 
         
         public channels(){
             createdAt = DateTime.Now;
+            Messages = new List<messages>();
         }
     }
 }
