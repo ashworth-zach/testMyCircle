@@ -1,2 +1,3 @@
 <div class="jubotron">join channel</div>
 <div class="container text-center"><input (keyup)="checkChannelOnKeyup($event)"></div>
+<button *ngIf="!ChannelExists">Create Channel</button>

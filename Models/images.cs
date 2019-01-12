@@ -12,9 +12,7 @@ namespace myCircle.Models{
 
         [Required(ErrorMessage = "This field is required")]
         public string data{get;set;}
-        [Required]
         public int messageId{get;set;}
-        [NotMapped]
 
         public messages message{get;set;}
 
