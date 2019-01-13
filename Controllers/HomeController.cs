@@ -311,7 +311,9 @@ namespace myCircle.Controllers
             };
             dbContext.messagelikes.Add(newlike);
             dbContext.SaveChanges();
-            return RedirectToAction("Weddings");
+            Dictionary<string, string> success = new Dictionary<string, string>();
+                success.Add("Message", "Success");
+                return Json(success);
         }
         //==========================================================================================================
 
