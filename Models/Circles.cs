@@ -14,7 +14,6 @@ namespace myCircle.Models{
         public string title{get;set;}
         public DateTime createdAt{get;set;}
         public DateTime updatedAt{get;set;}
-        public List<messages> Messages{get;set;}
         public List<channels> channels{get;set;}
         public List<UserCircles> UserCircles{get;set;}
 
@@ -22,7 +21,6 @@ namespace myCircle.Models{
         public circles(){
             createdAt = DateTime.Now;
             updatedAt = DateTime.Now;
-            Messages = new List<messages>();
             channels = new List<channels>();
             UserCircles = new List<UserCircles>();
 

@@ -42,14 +42,15 @@ namespace myCircle.Controllers
                 }
                 PasswordHasher<register> Hasher = new PasswordHasher<register>();
                 newUser.password = Hasher.HashPassword(newUser, newUser.password);
-                users usertoAdd= new users{
-                   username=newUser.username,
-                   password=newUser.password,
-                   email=newUser.email,
+                users usertoAdd = new users
+                {
+                    username = newUser.username,
+                    password = newUser.password,
+                    email = newUser.email,
                 };
                 dbContext.users.Add(usertoAdd);
                 dbContext.SaveChanges();
-                users User= dbContext.users.FirstOrDefault(x=>x.email==newUser.email);
+                users User = dbContext.users.FirstOrDefault(x => x.email == newUser.email);
                 HttpContext.Session.SetInt32("UserId", User.userId);
 
                 Dictionary<string, string> success = new Dictionary<string, string>();
@@ -184,11 +185,13 @@ namespace myCircle.Controllers
         [HttpGet("/GetCircleData/{id}")]//USE THIS TO RETRIEVE ALL CHANNELS AND MESSAGES IN A SPECIFIC CIRCLE
         public IActionResult GetCircleData(int id)
         {
-            ViewBag.data = dbContext.circles.Where(x=>x.circleId==id).Include(y=>y.channels).ThenInclude(z=>z.Messages).ThenInclude(m=>m.likes);
-            if (ViewBag.data.circleId==id){
+            ViewBag.data = dbContext.circles.Where(x => x.circleId == id).Include(y => y.channels).ThenInclude(z => z.Messages).ThenInclude(m => m.likes);
+            if (ViewBag.data.circleId == id)
+            {
                 return Json(ViewBag.data);//I USED VIEWBAG BECAUSE IM TOO LAZY TO FIGURE OUT WHAT OBJECT THIS IS ^^^^^^^^^^^^^^
             }
-            else{
+            else
+            {
                 Dictionary<string, string> error = new Dictionary<string, string>();
                 error.Add("Message", "Error");
                 return Json(error);
@@ -261,6 +264,31 @@ namespace myCircle.Controllers
                 return Json(ModelState);
             }
         }
+        [HttpGet("/joincircle/{id}")]
+        public IActionResult joinCircle(int id)
+        {
+            if (!dbContext.circles.Any(x => x.circleId == id))
+            {
+                Dictionary<string, string> error = new Dictionary<string, string>();
+                error.Add("Message", "Error");
+                error.Add("circle", "circle doesnt exist");
+                return Json(error);
+            }
+            else
+            {
+                int UserId = HttpContext.Session.GetInt32("UserId") ?? default(int);
+                // circles retrievedCircle = dbContext.circles.FirstOrDefault(x=>x.circleId==id);
+                // users User= dbContext.users.FirstOrDefault(x=>x.userId == UserId);
+                UserCircles USERCIRCLE = new UserCircles
+                {
+                    userId = UserId,
+                    circleId = id
+                };
+                Dictionary<string, string> success = new Dictionary<string, string>();
+                success.Add("Message", "Success");
+                return Json(success);
+            }
+        }
         //==========================================================================================================
         //MESSAGE FUNCTIONS
         //==========================================================================================================
@@ -285,21 +313,22 @@ namespace myCircle.Controllers
             }
         }
         [HttpGet("/Like/{messageId}")]
-        public IActionResult LikeMessage(int messageId){
-             if (HttpContext.Session.GetInt32("UserId") == null)
+        public IActionResult LikeMessage(int messageId)
+        {
+            if (HttpContext.Session.GetInt32("UserId") == null)
             {
                 Dictionary<string, string> error = new Dictionary<string, string>();
-                    error.Add("Message", "Error");
-                    error.Add("error", "not logged in");
-                    return Json(error);
+                error.Add("Message", "Error");
+                error.Add("error", "not logged in");
+                return Json(error);
             }
             int User = HttpContext.Session.GetInt32("UserId") ?? default(int);
             if (dbContext.messagelikes.Any(guest => guest.userId == User && guest.messageId == messageId))
             {
                 Dictionary<string, string> error = new Dictionary<string, string>();
-                    error.Add("Message", "Error");
-                    error.Add("error", "Already Liked this message");
-                    return Json(error);
+                error.Add("Message", "Error");
+                error.Add("error", "Already Liked this message");
+                return Json(error);
 
             }
             users usertoAdd = dbContext.users.FirstOrDefault(x => x.userId == User);
@@ -312,8 +341,8 @@ namespace myCircle.Controllers
             dbContext.messagelikes.Add(newlike);
             dbContext.SaveChanges();
             Dictionary<string, string> success = new Dictionary<string, string>();
-                success.Add("Message", "Success");
-                return Json(success);
+            success.Add("Message", "Success");
+            return Json(success);
         }
         //==========================================================================================================
 
