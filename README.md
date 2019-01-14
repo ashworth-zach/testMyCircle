@@ -6,7 +6,7 @@ Database File included: mydata.sql.
 # To Do List:
 - [x] User Login and Registration
 - [x] Able to Create/edit Circles
-- [ ] Able to Join Circles
+- [x] Able to Join Circles
 - [x] Able to Create/edit Channels
 - [ ] Able to Join Channels
 - [x] Clickable Prototype
