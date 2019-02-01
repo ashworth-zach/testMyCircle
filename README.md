@@ -1,6 +1,8 @@
 # testMyCircle
 A mattermost/slack clone made using C# with Angular.
 
+#owner deleted old repo and moved it here: https://github.com/tyler-patton44/myCircle-cSharp-Ang
+
 Database File included: mydata.sql.
 
 # To Do List:
